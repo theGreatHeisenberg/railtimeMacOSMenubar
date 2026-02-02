@@ -2,6 +2,10 @@ import SwiftUI
 
 @main
 struct CaltrainMenuBarApp: App {
+    init() {
+        _ = StationService.shared
+    }
+    
     var body: some Scene {
         if #available(macOS 13.0, *) {
             MenuBarExtra {

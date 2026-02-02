@@ -15,7 +15,8 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "CaltrainMenuBar",
-            path: "CaltrainMenuBar"
+            path: "CaltrainMenuBar",
+            resources: [.process("stations.json")]
         )
     ]
 )
