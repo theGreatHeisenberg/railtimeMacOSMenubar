@@ -7,8 +7,26 @@ struct SettingsView: View {
                 .tabItem { Label("Routes", systemImage: "arrow.triangle.swap") }
             GeneralSettingsView()
                 .tabItem { Label("General", systemImage: "gear") }
+            AboutView()
+                .tabItem { Label("About", systemImage: "info.circle") }
         }
         .frame(width: 450, height: 350)
+    }
+}
+
+struct AboutView: View {
+    var body: some View {
+        VStack(spacing: 16) {
+            Text("🚂").font(.system(size: 64))
+            Text("Caltrain Menu Bar").font(.title2.bold())
+            Text("Version 1.0")
+                .foregroundColor(.secondary)
+            Text("Real-time Caltrain schedules in your menu bar")
+                .multilineTextAlignment(.center)
+            Link("railtime API", destination: URL(string: "https://railtime.pages.dev")!)
+                .font(.caption)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

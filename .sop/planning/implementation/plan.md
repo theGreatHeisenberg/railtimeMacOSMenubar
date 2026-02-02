@@ -2,18 +2,18 @@
 
 ## Checklist
 
-- [ ] Step 1: Project setup and basic menu bar app
-- [ ] Step 2: Data models and station data
-- [ ] Step 3: API service with predictions fetching
-- [ ] Step 4: Menu bar content view with train list
-- [ ] Step 5: Route management and persistence
-- [ ] Step 6: Settings view and preferences
-- [ ] Step 7: Auto-refresh and countdown timer
-- [ ] Step 8: Cache layer and offline support
-- [ ] Step 9: Train approaching notifications
-- [ ] Step 10: Widget extension
-- [ ] Step 11: macOS 12 compatibility fallback
-- [ ] Step 12: Polish and final testing
+- [x] Step 1: Project setup and basic menu bar app
+- [x] Step 2: Data models and station data
+- [x] Step 3: API service with predictions fetching
+- [x] Step 4: Menu bar content view with train list
+- [x] Step 5: Route management and persistence
+- [x] Step 6: Settings view and preferences
+- [x] Step 7: Auto-refresh and countdown timer
+- [x] Step 8: Cache layer and offline support
+- [x] Step 9: Train approaching notifications
+- [x] Step 10: Widget extension
+- [x] Step 11: macOS 12 compatibility fallback
+- [x] Step 12: Polish and final testing
 
 ---
 
