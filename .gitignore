@@ -1,0 +1,17 @@
+# Build artifacts
+.build/
+CaltrainMenuBar.app/
+*.dmg
+
+# Xcode
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+DerivedData/
+
+# macOS
+.DS_Store
+
+# Project-specific
+.ralph/
+.sop/

@@ -4,14 +4,39 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem?
     private var popover: NSPopover?
+    private var settingsWindow: NSWindow?
+    
+    static var shared: AppDelegate?
     
     func applicationDidFinishLaunching(_ notification: Notification) {
+        AppDelegate.shared = self
         _ = StationService.shared
         
         // Only use NSStatusItem on macOS 12; macOS 13+ uses MenuBarExtra
         if #unavailable(macOS 13.0) {
             setupStatusItem()
         }
+    }
+    
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return false
+    }
+    
+    func openSettings() {
+        if settingsWindow == nil {
+            settingsWindow = NSWindow(
+                contentRect: NSRect(x: 0, y: 0, width: 450, height: 350),
+                styleMask: [.titled, .closable],
+                backing: .buffered,
+                defer: false
+            )
+            settingsWindow?.title = "Settings"
+            settingsWindow?.contentView = NSHostingView(rootView: SettingsView())
+            settingsWindow?.center()
+            settingsWindow?.level = .floating
+        }
+        settingsWindow?.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
     }
     
     private func setupStatusItem() {

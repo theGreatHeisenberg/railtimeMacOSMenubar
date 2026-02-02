@@ -1,11 +1,17 @@
 import SwiftUI
 import Combine
 
+struct PredictionWithArrival: Identifiable {
+    let prediction: TrainPrediction
+    let arrivalTime: String?
+    var id: String { prediction.id }
+}
+
 @MainActor
 class AppState: ObservableObject {
     static let shared = AppState()
     
-    @Published var predictions: [TrainPrediction] = []
+    @Published var predictions: [PredictionWithArrival] = []
     @Published var isLoading = false
     @Published var error: String?
     @Published var countdown: String = "--"
@@ -27,7 +33,7 @@ class AppState: ObservableObject {
         guard notificationsEnabled else { return }
         NotificationService.shared.cancelAll()
         if let first = predictions.first {
-            NotificationService.shared.scheduleNotification(for: first, minutesBefore: notificationMinutes)
+            NotificationService.shared.scheduleNotification(for: first.prediction, minutesBefore: notificationMinutes)
         }
     }
     
@@ -72,7 +78,7 @@ class AppState: ObservableObject {
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm a"
         
-        guard let departureDate = formatter.date(from: nextTrain.departure) else {
+        guard let departureDate = formatter.date(from: nextTrain.prediction.departure) else {
             countdown = "--"
             return
         }
@@ -111,7 +117,7 @@ class AppState: ObservableObject {
             return
         }
         
-        let direction: Direction = station.stop1 < destStation.stop1 ? .northbound : .southbound
+        let direction: Direction = station.stop1 < destStation.stop1 ? .southbound : .northbound
         
         isLoading = true
         error = nil
@@ -122,14 +128,18 @@ class AppState: ObservableObject {
                 direction: direction,
                 limit: 3
             )
-            predictions = fetched
+            
+            // Fetch destination predictions to get arrival times
+            let destPredictions = try? await APIService.shared.fetchPredictions(station: destStation)
+            let arrivalMap = Dictionary(uniqueKeysWithValues: (destPredictions ?? []).map { ($0.trainNumber, $0.departure) })
+            
+            predictions = fetched.map { PredictionWithArrival(prediction: $0, arrivalTime: arrivalMap[$0.trainNumber]) }
             isStale = false
             await CacheService.shared.save(predictions: fetched, routeId: route.id, routeName: route.name)
             scheduleNotifications()
         } catch {
-            // Load from cache on network failure
             if let cached = await CacheService.shared.load(routeId: route.id) {
-                predictions = cached
+                predictions = cached.map { PredictionWithArrival(prediction: $0, arrivalTime: nil) }
                 isStale = await CacheService.shared.isStale()
             }
             self.error = error.localizedDescription

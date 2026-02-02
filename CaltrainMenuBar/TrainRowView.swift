@@ -2,40 +2,100 @@ import SwiftUI
 
 struct TrainRowView: View {
     let prediction: TrainPrediction
+    var arrivalTime: String?
+    @State private var isHovered = false
+    
+    private var sourceAbbrev: String {
+        guard let route = RouteManager.shared.activeRoute,
+              let station = StationService.shared.station(byUrlname: route.sourceStation) else { return "" }
+        return station.abbrev
+    }
+    
+    private var destAbbrev: String {
+        guard let route = RouteManager.shared.activeRoute,
+              let station = StationService.shared.station(byUrlname: route.destinationStation) else { return "" }
+        return station.abbrev
+    }
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 2) {
-                HStack(spacing: 4) {
-                    Text(prediction.departure)
-                        .font(.system(.body, design: .monospaced))
-                    Text("→")
-                        .foregroundColor(.secondary)
-                    Text(prediction.eta)
-                        .font(.system(.body, design: .monospaced))
-                }
-                HStack(spacing: 6) {
-                    trainTypeBadge
-                    Text("#\(prediction.trainNumber)")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
+        Button(action: {
+            if let url = URL(string: "https://railtime.pages.dev/trains/\(prediction.trainNumber)") {
+                NSWorkspace.shared.open(url)
             }
-            Spacer()
-            delayIndicator
+        }) {
+            HStack(spacing: 10) {
+                // Train type indicator
+                trainTypeBadge
+                
+                // Main content
+                VStack(alignment: .leading, spacing: 3) {
+                    // Times row
+                    HStack(spacing: 6) {
+                        HStack(spacing: 3) {
+                            Text(sourceAbbrev)
+                                .font(.caption2.weight(.semibold))
+                                .foregroundColor(.secondary)
+                            Text(prediction.departure)
+                                .font(.system(.subheadline, design: .rounded).weight(.medium))
+                        }
+                        
+                        if let arrival = arrivalTime {
+                            Image(systemName: "arrow.right")
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+                            HStack(spacing: 3) {
+                                Text(destAbbrev)
+                                    .font(.caption2.weight(.semibold))
+                                    .foregroundColor(.secondary)
+                                Text(arrival)
+                                    .font(.system(.subheadline, design: .rounded).weight(.medium))
+                            }
+                        }
+                    }
+                    
+                    // Info row
+                    HStack(spacing: 8) {
+                        Text("#\(prediction.trainNumber)")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                        
+                        Text("departing in \(prediction.eta)")
+                            .font(.caption2)
+                            .foregroundColor(.orange)
+                    }
+                }
+                
+                Spacer()
+                
+                // Delay indicator
+                delayIndicator
+            }
+            .padding(.vertical, 6)
+            .padding(.horizontal, 4)
+            .background(isHovered ? Color.primary.opacity(0.05) : Color.clear)
+            .cornerRadius(6)
+            .contentShape(Rectangle())
         }
-        .padding(.vertical, 4)
+        .buttonStyle(.plain)
+        .onHover { isHovered = $0 }
     }
     
     @ViewBuilder
     private var trainTypeBadge: some View {
-        Text(prediction.trainType.rawValue)
-            .font(.caption)
-            .padding(.horizontal, 6)
-            .padding(.vertical, 2)
-            .background(trainTypeColor.opacity(0.2))
-            .foregroundColor(trainTypeColor)
-            .cornerRadius(4)
+        Text(trainTypeShort)
+            .font(.system(size: 10, weight: .bold, design: .rounded))
+            .foregroundColor(.white)
+            .frame(width: 28, height: 28)
+            .background(trainTypeColor)
+            .cornerRadius(6)
+    }
+    
+    private var trainTypeShort: String {
+        switch prediction.trainType {
+        case .bullet: return "BLT"
+        case .limited: return "LTD"
+        case .local: return "LCL"
+        }
     }
     
     private var trainTypeColor: Color {
@@ -49,13 +109,17 @@ struct TrainRowView: View {
     @ViewBuilder
     private var delayIndicator: some View {
         if let status = prediction.delayStatus {
-            HStack(spacing: 2) {
+            HStack(spacing: 4) {
                 Circle()
                     .fill(delayColor(status))
-                    .frame(width: 8, height: 8)
+                    .frame(width: 6, height: 6)
                 if let mins = prediction.delayMinutes, mins > 0 {
                     Text("+\(mins)m")
-                        .font(.caption)
+                        .font(.caption2.weight(.medium))
+                        .foregroundColor(delayColor(status))
+                } else if status == .onTime {
+                    Text("On time")
+                        .font(.caption2)
                         .foregroundColor(delayColor(status))
                 }
             }

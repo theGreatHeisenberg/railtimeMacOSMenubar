@@ -9,6 +9,42 @@ struct Station: Codable, Identifiable, Hashable {
     let lon: Double
     
     var id: String { urlname }
+    
+    var abbrev: String {
+        switch urlname {
+        case "san_francisco": return "SFO"
+        case "22nd_street": return "22S"
+        case "bayshore": return "BAY"
+        case "south_sf": return "SSF"
+        case "san_bruno": return "SBR"
+        case "place_MLBR": return "MIL"
+        case "broadway": return "BWY"
+        case "burlingame": return "BUR"
+        case "san_mateo": return "SMT"
+        case "hayward_park": return "HWP"
+        case "hillsdale": return "HSD"
+        case "belmont": return "BEL"
+        case "san_carlos": return "SCA"
+        case "redwood_city": return "RWC"
+        case "menlo_park": return "MNP"
+        case "palo_alto": return "PAL"
+        case "california_ave": return "CAL"
+        case "san_antonio": return "SAN"
+        case "mountain_view": return "MTV"
+        case "sunnyvale": return "SNV"
+        case "lawrence": return "LAW"
+        case "santa_clara": return "SCL"
+        case "college_park": return "CPK"
+        case "sj_diridon": return "SJD"
+        case "tamien": return "TAM"
+        case "capitol": return "CAP"
+        case "blossom_hill": return "BHL"
+        case "morgan_hill": return "MRH"
+        case "san_martin": return "SMR"
+        case "gilroy": return "GIL"
+        default: return String(stopname.prefix(3)).uppercased()
+        }
+    }
 }
 
 struct Route: Codable, Identifiable, Hashable {
