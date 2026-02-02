@@ -124,7 +124,7 @@ class AppState: ObservableObject {
             )
             predictions = fetched
             isStale = false
-            await CacheService.shared.save(predictions: fetched, routeId: route.id)
+            await CacheService.shared.save(predictions: fetched, routeId: route.id, routeName: route.name)
             scheduleNotifications()
         } catch {
             // Load from cache on network failure
