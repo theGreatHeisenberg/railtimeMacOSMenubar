@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 @MainActor
 class AppState: ObservableObject {
@@ -7,6 +8,85 @@ class AppState: ObservableObject {
     @Published var predictions: [TrainPrediction] = []
     @Published var isLoading = false
     @Published var error: String?
+    @Published var countdown: String = "--"
+    
+    @AppStorage("refreshInterval") private var refreshInterval: Int = 60
+    
+    private var refreshTimer: Timer?
+    private var countdownTimer: Timer?
+    
+    init() {
+        startTimers()
+    }
+    
+    func startTimers() {
+        stopTimers()
+        
+        // Auto-refresh timer
+        refreshTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(refreshInterval), repeats: true) { [weak self] _ in
+            Task { @MainActor in
+                await self?.refresh()
+            }
+        }
+        
+        // Countdown update timer (every second)
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            Task { @MainActor in
+                self?.updateCountdown()
+            }
+        }
+    }
+    
+    func stopTimers() {
+        refreshTimer?.invalidate()
+        countdownTimer?.invalidate()
+    }
+    
+    func restartRefreshTimer() {
+        startTimers()
+    }
+    
+    private func updateCountdown() {
+        guard let nextTrain = predictions.first else {
+            countdown = "--"
+            return
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        
+        guard let departureDate = formatter.date(from: nextTrain.departure) else {
+            countdown = "--"
+            return
+        }
+        
+        // Adjust departure date to today
+        let calendar = Calendar.current
+        let now = Date()
+        var components = calendar.dateComponents([.hour, .minute], from: departureDate)
+        components.year = calendar.component(.year, from: now)
+        components.month = calendar.component(.month, from: now)
+        components.day = calendar.component(.day, from: now)
+        
+        guard let todayDeparture = calendar.date(from: components) else {
+            countdown = "--"
+            return
+        }
+        
+        let minutes = Int(todayDeparture.timeIntervalSince(now) / 60)
+        
+        if minutes < 0 {
+            countdown = "Now"
+        } else if minutes == 0 {
+            countdown = "<1m"
+        } else if minutes < 60 {
+            countdown = "\(minutes)m"
+        } else {
+            let hours = minutes / 60
+            let mins = minutes % 60
+            countdown = "\(hours)h\(mins)m"
+        }
+    }
     
     func refresh() async {
         guard let route = RouteManager.shared.activeRoute,
@@ -15,7 +95,6 @@ class AppState: ObservableObject {
             return
         }
         
-        // Determine direction based on station order (north stations have lower stop IDs)
         let direction: Direction = station.stop1 < destStation.stop1 ? .northbound : .southbound
         
         isLoading = true
@@ -27,6 +106,7 @@ class AppState: ObservableObject {
                 direction: direction,
                 limit: 3
             )
+            updateCountdown()
         } catch {
             self.error = error.localizedDescription
         }
