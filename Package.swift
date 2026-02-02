@@ -16,6 +16,7 @@ let package = Package(
         .executableTarget(
             name: "CaltrainMenuBar",
             path: "CaltrainMenuBar",
+            exclude: ["Info.plist", "CaltrainMenuBar.entitlements"],
             resources: [.process("stations.json")]
         )
     ]

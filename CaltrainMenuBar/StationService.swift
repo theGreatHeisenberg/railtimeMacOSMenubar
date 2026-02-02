@@ -9,7 +9,7 @@ class StationService {
     }
     
     private func loadStations() {
-        guard let url = Bundle.main.url(forResource: "stations", withExtension: "json"),
+        guard let url = Bundle.module.url(forResource: "stations", withExtension: "json"),
               let data = try? Data(contentsOf: url),
               let decoded = try? JSONDecoder().decode([Station].self, from: data) else {
             print("Failed to load stations.json")
