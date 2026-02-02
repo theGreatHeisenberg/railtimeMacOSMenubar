@@ -2,10 +2,15 @@ import SwiftUI
 
 struct MenuBarContentView: View {
     @StateObject private var appState = AppState.shared
+    @StateObject private var routeManager = RouteManager.shared
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             headerView
+            if !routeManager.routes.isEmpty {
+                Divider()
+                routePickerView
+            }
             Divider()
             trainListView
             Divider()
@@ -13,13 +18,10 @@ struct MenuBarContentView: View {
         }
         .frame(width: 280)
         .task {
-            if appState.predictions.isEmpty {
-                // Default to Palo Alto northbound for now
-                if let station = StationService.shared.station(byUrlname: "palo-alto") {
-                    appState.configure(station: station, direction: .northbound)
-                    await appState.refresh()
-                }
-            }
+            await appState.refresh()
+        }
+        .onChange(of: routeManager.activeRouteId) { _ in
+            Task { await appState.refresh() }
         }
     }
     
@@ -42,9 +44,36 @@ struct MenuBarContentView: View {
         .padding(.vertical, 8)
     }
     
+    private var routePickerView: some View {
+        HStack {
+            Picker("Route", selection: Binding(
+                get: { routeManager.activeRouteId ?? UUID() },
+                set: { id in
+                    if let route = routeManager.routes.first(where: { $0.id == id }) {
+                        routeManager.setActiveRoute(route)
+                    }
+                }
+            )) {
+                ForEach(routeManager.routes) { route in
+                    Text(route.name).tag(route.id)
+                }
+            }
+            .labelsHidden()
+            .pickerStyle(.menu)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 6)
+    }
+    
     @ViewBuilder
     private var trainListView: some View {
-        if let error = appState.error {
+        if routeManager.routes.isEmpty {
+            Text("No routes configured.\nOpen Settings to add a route.")
+                .foregroundColor(.secondary)
+                .font(.caption)
+                .multilineTextAlignment(.center)
+                .padding()
+        } else if let error = appState.error {
             Text(error)
                 .foregroundColor(.red)
                 .font(.caption)

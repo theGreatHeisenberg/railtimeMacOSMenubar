@@ -8,23 +8,23 @@ class AppState: ObservableObject {
     @Published var isLoading = false
     @Published var error: String?
     
-    private var currentStation: Station?
-    private var currentDirection: Direction = .northbound
-    
-    func configure(station: Station, direction: Direction) {
-        currentStation = station
-        currentDirection = direction
-    }
-    
     func refresh() async {
-        guard let station = currentStation else { return }
+        guard let route = RouteManager.shared.activeRoute,
+              let station = StationService.shared.station(byUrlname: route.sourceStation),
+              let destStation = StationService.shared.station(byUrlname: route.destinationStation) else {
+            return
+        }
+        
+        // Determine direction based on station order (north stations have lower stop IDs)
+        let direction: Direction = station.stop1 < destStation.stop1 ? .northbound : .southbound
+        
         isLoading = true
         error = nil
         
         do {
             predictions = try await APIService.shared.fetchPredictions(
                 station: station,
-                direction: currentDirection,
+                direction: direction,
                 limit: 3
             )
         } catch {
