@@ -2,6 +2,27 @@
   "": {
     "swift-dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/master.swiftdeps"
   },
+  "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/APIService.swift": {
+    "dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/APIService.d",
+    "object": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/APIService.swift.o",
+    "swiftmodule": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/APIService~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/APIService.swiftdeps",
+    "diagnostics": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/APIService.dia"
+  },
+  "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/AppState.swift": {
+    "dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/AppState.d",
+    "object": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/AppState.swift.o",
+    "swiftmodule": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/AppState~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/AppState.swiftdeps",
+    "diagnostics": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/AppState.dia"
+  },
+  "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/CacheService.swift": {
+    "dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/CacheService.d",
+    "object": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/CacheService.swift.o",
+    "swiftmodule": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/CacheService~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/CacheService.swiftdeps",
+    "diagnostics": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/CacheService.dia"
+  },
   "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/CaltrainMenuBarApp.swift": {
     "dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/CaltrainMenuBarApp.d",
     "object": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/CaltrainMenuBarApp.swift.o",
@@ -23,11 +44,53 @@
     "swift-dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/MenuBarLabel.swiftdeps",
     "diagnostics": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/MenuBarLabel.dia"
   },
+  "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/Models.swift": {
+    "dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/Models.d",
+    "object": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/Models.swift.o",
+    "swiftmodule": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/Models~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/Models.swiftdeps",
+    "diagnostics": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/Models.dia"
+  },
+  "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/NotificationService.swift": {
+    "dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/NotificationService.d",
+    "object": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/NotificationService.swift.o",
+    "swiftmodule": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/NotificationService~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/NotificationService.swiftdeps",
+    "diagnostics": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/NotificationService.dia"
+  },
+  "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/RouteManager.swift": {
+    "dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/RouteManager.d",
+    "object": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/RouteManager.swift.o",
+    "swiftmodule": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/RouteManager~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/RouteManager.swiftdeps",
+    "diagnostics": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/RouteManager.dia"
+  },
   "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/SettingsView.swift": {
     "dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/SettingsView.d",
     "object": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/SettingsView.swift.o",
     "swiftmodule": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/SettingsView~partial.swiftmodule",
     "swift-dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/SettingsView.swiftdeps",
     "diagnostics": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/SettingsView.dia"
+  },
+  "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/StationService.swift": {
+    "dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/StationService.d",
+    "object": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/StationService.swift.o",
+    "swiftmodule": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/StationService~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/StationService.swiftdeps",
+    "diagnostics": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/StationService.dia"
+  },
+  "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/TrainRowView.swift": {
+    "dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/TrainRowView.d",
+    "object": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/TrainRowView.swift.o",
+    "swiftmodule": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/TrainRowView~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/TrainRowView.swiftdeps",
+    "diagnostics": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/TrainRowView.dia"
+  },
+  "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/DerivedSources/resource_bundle_accessor.swift": {
+    "dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/resource_bundle_accessor.d",
+    "object": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/resource_bundle_accessor.swift.o",
+    "swiftmodule": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/resource_bundle_accessor~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/resource_bundle_accessor.swiftdeps",
+    "diagnostics": "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/resource_bundle_accessor.dia"
   }
 }

@@ -12,12 +12,23 @@ class AppState: ObservableObject {
     @Published var isStale = false
     
     @AppStorage("refreshInterval") private var refreshInterval: Int = 60
+    @AppStorage("notificationsEnabled") private var notificationsEnabled: Bool = true
+    @AppStorage("notificationMinutes") private var notificationMinutes: Int = 5
     
     private var refreshTimer: Timer?
     private var countdownTimer: Timer?
     
     init() {
+        NotificationService.shared.requestPermission()
         startTimers()
+    }
+    
+    private func scheduleNotifications() {
+        guard notificationsEnabled else { return }
+        NotificationService.shared.cancelAll()
+        if let first = predictions.first {
+            NotificationService.shared.scheduleNotification(for: first, minutesBefore: notificationMinutes)
+        }
     }
     
     func startTimers() {
@@ -114,6 +125,7 @@ class AppState: ObservableObject {
             predictions = fetched
             isStale = false
             await CacheService.shared.save(predictions: fetched, routeId: route.id)
+            scheduleNotifications()
         } catch {
             // Load from cache on network failure
             if let cached = await CacheService.shared.load(routeId: route.id) {
