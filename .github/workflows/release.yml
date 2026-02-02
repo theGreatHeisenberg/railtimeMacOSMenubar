@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Build
+        run: |
+          swift build -c release
+          mkdir -p CaltrainMenuBar.app/Contents/MacOS
+          mkdir -p CaltrainMenuBar.app/Contents/Resources
+          cp .build/release/CaltrainMenuBar CaltrainMenuBar.app/Contents/MacOS/
+          cp CaltrainMenuBar/Info.plist CaltrainMenuBar.app/Contents/
+          cp CaltrainMenuBar/stations.json CaltrainMenuBar.app/Contents/Resources/
+          hdiutil create -volname "CaltrainMenuBar" -srcfolder CaltrainMenuBar.app -ov -format UDZO CaltrainMenuBar.dmg
+      
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: CaltrainMenuBar.dmg
