@@ -1,0 +1,296 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.CaltrainMenuBar-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Library/Developer/CommandLineTools/usr/bin/swiftc",
+      "fileList" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/sources",
+      "importPath" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/CaltrainMenuBarApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/MenuBarContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/MenuBarLabel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/SettingsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "CaltrainMenuBar",
+      "moduleOutputPath" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/Modules/CaltrainMenuBar.swiftmodule",
+      "objects" : [
+        "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/CaltrainMenuBarApp.swift.o",
+        "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/MenuBarContentView.swift.o",
+        "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/MenuBarLabel.swift.o",
+        "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/SettingsView.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx12.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "CaltrainMenuBar_main",
+        "-swift-version",
+        "5",
+        "-I",
+        "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+        "-L",
+        "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+        "-plugin-path",
+        "/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "railtimemacoswidget"
+      ],
+      "outputFileMapPath" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/CaltrainMenuBarApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/MenuBarContentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/MenuBarLabel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/SettingsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/Modules/CaltrainMenuBar.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/CaltrainMenuBarApp.swift",
+        "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/MenuBarContentView.swift",
+        "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/MenuBarLabel.swift",
+        "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/SettingsView.swift"
+      ],
+      "tempsPath" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "CaltrainMenuBar" : [
+      "/Library/Developer/CommandLineTools/usr/bin/swiftc",
+      "-module-name",
+      "CaltrainMenuBar",
+      "-package-name",
+      "railtimemacoswidget",
+      "-c",
+      "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/CaltrainMenuBarApp.swift",
+      "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/MenuBarContentView.swift",
+      "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/MenuBarLabel.swift",
+      "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/SettingsView.swift",
+      "-I",
+      "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx12.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "CaltrainMenuBar_main",
+      "-swift-version",
+      "5",
+      "-I",
+      "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+      "-L",
+      "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+      "-plugin-path",
+      "/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "railtimemacoswidget",
+      "-driver-use-frontend-path",
+      "/Library/Developer/CommandLineTools/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "CaltrainMenuBar" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar-entitlement.plist" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<entitlement-plist>"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<com.apple.security.get-task-allow>"
+        }
+      ],
+      "outputFilePath" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar-entitlement.plist"
+    },
+    "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/CaltrainMenuBarApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/MenuBarContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/MenuBarLabel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/SettingsView.swift"
+        }
+      ],
+      "outputFilePath" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/sources"
+    },
+    "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/CaltrainMenuBarApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/MenuBarContentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/MenuBarLabel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/SettingsView.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.product/Objects.LinkFileList"
+    },
+    "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Library/Developer/CommandLineTools/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"
+    }
+  }
+}

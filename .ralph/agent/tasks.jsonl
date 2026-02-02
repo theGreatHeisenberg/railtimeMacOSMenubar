@@ -1,0 +1,12 @@
+{"id":"task-1770060360-39c6","title":"Step 1: Project setup and basic menu bar app","status":"open","priority":1,"blocked_by":[],"loop_id":"primary-20260202-192522","created":"2026-02-02T19:26:00.735691+00:00"}
+{"id":"task-1770060365-810f","title":"Step 2: Data models and station data","status":"open","priority":2,"blocked_by":["task-1770060360-39c6"],"loop_id":"primary-20260202-192522","created":"2026-02-02T19:26:05.819478+00:00"}
+{"id":"task-1770060365-a6be","title":"Step 3: API service with predictions fetching","status":"open","priority":2,"blocked_by":["task-1770060360-39c6"],"loop_id":"primary-20260202-192522","created":"2026-02-02T19:26:05.829139+00:00"}
+{"id":"task-1770060365-d830","title":"Step 4: Menu bar content view with train list","status":"open","priority":2,"blocked_by":[],"loop_id":"primary-20260202-192522","created":"2026-02-02T19:26:05.841781+00:00"}
+{"id":"task-1770060365-1373","title":"Step 5: Route management and persistence","status":"open","priority":2,"blocked_by":[],"loop_id":"primary-20260202-192522","created":"2026-02-02T19:26:05.856959+00:00"}
+{"id":"task-1770060365-3f95","title":"Step 6: Settings view and preferences","status":"open","priority":3,"blocked_by":[],"loop_id":"primary-20260202-192522","created":"2026-02-02T19:26:05.868251+00:00"}
+{"id":"task-1770060365-670e","title":"Step 7: Auto-refresh and countdown timer","status":"open","priority":3,"blocked_by":[],"loop_id":"primary-20260202-192522","created":"2026-02-02T19:26:05.878356+00:00"}
+{"id":"task-1770060365-8ff8","title":"Step 8: Cache layer and offline support","status":"open","priority":3,"blocked_by":[],"loop_id":"primary-20260202-192522","created":"2026-02-02T19:26:05.888831+00:00"}
+{"id":"task-1770060365-dde7","title":"Step 9: Train approaching notifications","status":"open","priority":3,"blocked_by":[],"loop_id":"primary-20260202-192522","created":"2026-02-02T19:26:05.908780+00:00"}
+{"id":"task-1770060365-2cda","title":"Step 10: Widget extension","status":"open","priority":4,"blocked_by":[],"loop_id":"primary-20260202-192522","created":"2026-02-02T19:26:05.928991+00:00"}
+{"id":"task-1770060365-5e5d","title":"Step 11: macOS 12 compatibility fallback","status":"open","priority":4,"blocked_by":[],"loop_id":"primary-20260202-192522","created":"2026-02-02T19:26:05.941666+00:00"}
+{"id":"task-1770060365-891c","title":"Step 12: Polish and final testing","status":"open","priority":5,"blocked_by":[],"loop_id":"primary-20260202-192522","created":"2026-02-02T19:26:05.952610+00:00"}
