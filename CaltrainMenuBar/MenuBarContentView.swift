@@ -29,6 +29,10 @@ struct MenuBarContentView: View {
         HStack {
             Text("🚂 Caltrain")
                 .font(.headline)
+            if appState.isStale {
+                Text("⚠️")
+                    .help("Showing cached data")
+            }
             Spacer()
             if appState.isLoading {
                 ProgressView()

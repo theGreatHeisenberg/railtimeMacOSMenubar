@@ -9,6 +9,7 @@ class AppState: ObservableObject {
     @Published var isLoading = false
     @Published var error: String?
     @Published var countdown: String = "--"
+    @Published var isStale = false
     
     @AppStorage("refreshInterval") private var refreshInterval: Int = 60
     
@@ -22,17 +23,16 @@ class AppState: ObservableObject {
     func startTimers() {
         stopTimers()
         
-        // Auto-refresh timer
         refreshTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(refreshInterval), repeats: true) { [weak self] _ in
             Task { @MainActor in
                 await self?.refresh()
             }
         }
         
-        // Countdown update timer (every second)
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             Task { @MainActor in
                 self?.updateCountdown()
+                self?.checkStale()
             }
         }
     }
@@ -44,6 +44,12 @@ class AppState: ObservableObject {
     
     func restartRefreshTimer() {
         startTimers()
+    }
+    
+    private func checkStale() {
+        Task {
+            isStale = await CacheService.shared.isStale()
+        }
     }
     
     private func updateCountdown() {
@@ -60,7 +66,6 @@ class AppState: ObservableObject {
             return
         }
         
-        // Adjust departure date to today
         let calendar = Calendar.current
         let now = Date()
         var components = calendar.dateComponents([.hour, .minute], from: departureDate)
@@ -101,16 +106,24 @@ class AppState: ObservableObject {
         error = nil
         
         do {
-            predictions = try await APIService.shared.fetchPredictions(
+            let fetched = try await APIService.shared.fetchPredictions(
                 station: station,
                 direction: direction,
                 limit: 3
             )
-            updateCountdown()
+            predictions = fetched
+            isStale = false
+            await CacheService.shared.save(predictions: fetched, routeId: route.id)
         } catch {
+            // Load from cache on network failure
+            if let cached = await CacheService.shared.load(routeId: route.id) {
+                predictions = cached
+                isStale = await CacheService.shared.isStale()
+            }
             self.error = error.localizedDescription
         }
         
+        updateCountdown()
         isLoading = false
     }
 }

@@ -8,6 +8,9 @@ struct MenuBarLabel: View {
             Text("🚂")
             Text(appState.countdown)
                 .font(.system(.body, design: .monospaced))
+            if appState.isStale {
+                Text("⚠️")
+            }
         }
     }
 }
