@@ -3,11 +3,17 @@ import UserNotifications
 class NotificationService {
     static let shared = NotificationService()
     
+    private var isBundled: Bool {
+        Bundle.main.bundleIdentifier != nil
+    }
+    
     func requestPermission() {
+        guard isBundled else { return }
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in }
     }
     
     func scheduleNotification(for prediction: TrainPrediction, minutesBefore: Int) {
+        guard isBundled else { return }
         guard let departureDate = parseTime(prediction.departure) else { return }
         let triggerDate = departureDate.addingTimeInterval(-Double(minutesBefore * 60))
         guard triggerDate > Date() else { return }
@@ -23,6 +29,7 @@ class NotificationService {
     }
     
     func cancelAll() {
+        guard isBundled else { return }
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
