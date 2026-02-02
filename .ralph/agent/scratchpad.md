@@ -1,23 +1,13 @@
-# Caltrain Menu Bar App - Scratchpad
+# Objective: Fix swift run crash
 
-## Current Status
-ALL 12 STEPS COMPLETE ✅
+## Status: COMPLETE
 
-## Implementation Summary
-All acceptance criteria met:
-- [x] Menu bar shows train icon + countdown to next train
-- [x] Clicking reveals list of next 3 trains with all info
-- [x] Can add/edit/delete route pairs in Settings
-- [x] Can switch between routes
-- [x] Data auto-refreshes at configured interval
-- [x] Notifications fire X minutes before departure
-- [x] Widget shows trains in Notification Center
-- [x] Works on macOS 12+ (NSStatusItem fallback for macOS 12)
-- [x] Shows cached data when offline
+## Problem
+`swift run` crashed with `bundleProxyForCurrentProcess is nil` because `UNUserNotificationCenter.current()` requires a proper app bundle.
 
-## Final Commit
-- Added About tab to Settings
-- Marked all 12 steps complete in plan.md
+## Solution Applied
+Added `isBundled` check to `NotificationService` that guards all `UNUserNotificationCenter` calls. When running via `swift run` (no bundle), notifications are silently skipped.
 
-## Objective Complete
-The Caltrain Menu Bar app is fully implemented.
+## Verification
+- `swift run` now starts successfully without crash
+- Committed: 0b31f21
