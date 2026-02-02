@@ -41,6 +41,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/AppDelegate.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/AppState.swift"
         },
         {
@@ -105,6 +109,7 @@
       "moduleOutputPath" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/Modules/CaltrainMenuBar.swiftmodule",
       "objects" : [
         "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/APIService.swift.o",
+        "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/AppDelegate.swift.o",
         "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/AppState.swift.o",
         "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/CacheService.swift.o",
         "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/CaltrainMenuBarApp.swift.o",
@@ -169,6 +174,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/AppDelegate.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/AppState.swift.o"
         },
         {
@@ -223,6 +232,7 @@
       "prepareForIndexing" : false,
       "sources" : [
         "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/APIService.swift",
+        "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/AppDelegate.swift",
         "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/AppState.swift",
         "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/CacheService.swift",
         "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/CaltrainMenuBarApp.swift",
@@ -252,6 +262,7 @@
       "railtimemacoswidget",
       "-c",
       "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/APIService.swift",
+      "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/AppDelegate.swift",
       "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/AppState.swift",
       "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/CacheService.swift",
       "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/CaltrainMenuBarApp.swift",
@@ -355,6 +366,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/AppDelegate.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/CaltrainMenuBar/AppState.swift"
         },
         {
@@ -414,6 +429,10 @@
         {
           "kind" : "file",
           "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/APIService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/workplace/personal/railtimeMacOsWidget/.build/arm64-apple-macosx/debug/CaltrainMenuBar.build/AppDelegate.swift.o"
         },
         {
           "kind" : "file",
