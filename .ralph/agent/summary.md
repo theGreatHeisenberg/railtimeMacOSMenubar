@@ -2,7 +2,7 @@
 
 **Status:** Completed successfully
 **Iterations:** 1
-**Duration:** 1m 18s
+**Duration:** 1m 27s
 
 ## Tasks
 
@@ -14,4 +14,4 @@ _No events recorded._
 
 ## Final Commit
 
-0b31f21: Fix swift run crash by guarding UNUserNotificationCenter calls
+9317d70: Fix Settings button not opening settings window

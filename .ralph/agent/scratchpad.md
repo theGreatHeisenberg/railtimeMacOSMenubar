@@ -1,13 +1,11 @@
-# Objective: Fix swift run crash
+# Objective: Fix Settings button not opening anything
 
 ## Status: COMPLETE
 
-## Problem
-`swift run` crashed with `bundleProxyForCurrentProcess is nil` because `UNUserNotificationCenter.current()` requires a proper app bundle.
+## Solution
+Added `NSApp.activate(ignoringOtherApps: true)` before sending the `showSettingsWindow:` action.
 
-## Solution Applied
-Added `isBundled` check to `NotificationService` that guards all `UNUserNotificationCenter` calls. When running via `swift run` (no bundle), notifications are silently skipped.
+MenuBarExtra apps run as accessory apps and need to explicitly activate themselves for the Settings window to appear.
 
-## Verification
-- `swift run` now starts successfully without crash
-- Committed: 0b31f21
+## Commit
+9317d70 - Fix Settings button not opening settings window
