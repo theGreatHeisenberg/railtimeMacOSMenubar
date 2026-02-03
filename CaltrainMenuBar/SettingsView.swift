@@ -234,6 +234,7 @@ struct GeneralSettingsView: View {
     @AppStorage("refreshInterval") private var refreshInterval = 60
     @AppStorage("notificationsEnabled") private var notificationsEnabled = true
     @AppStorage("notificationMinutes") private var notificationMinutes = 5
+    @AppStorage("defaultTrainCount") private var defaultTrainCount = 3
     
     var body: some View {
         Form {
@@ -243,8 +244,13 @@ struct GeneralSettingsView: View {
                     Text("2 minutes").tag(120)
                     Text("5 minutes").tag(300)
                 }
+                Picker("Trains to show", selection: $defaultTrainCount) {
+                    Text("3 trains").tag(3)
+                    Text("5 trains").tag(5)
+                    Text("10 trains").tag(10)
+                }
             } header: {
-                Label("Data Refresh", systemImage: "arrow.clockwise")
+                Label("Display", systemImage: "list.bullet")
             }
             
             Section {

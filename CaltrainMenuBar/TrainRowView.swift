@@ -3,6 +3,8 @@ import SwiftUI
 struct TrainRowView: View {
     let prediction: TrainPrediction
     var arrivalTime: String?
+    var isSubscribed: Bool = false
+    var onBellTap: (() -> Void)?
     @State private var isHovered = false
     
     private var sourceAbbrev: String {
@@ -18,65 +20,72 @@ struct TrainRowView: View {
     }
     
     var body: some View {
-        Button(action: {
-            if let url = URL(string: "https://railtime.pages.dev/trains/\(prediction.trainNumber)") {
-                NSWorkspace.shared.open(url)
-            }
-        }) {
-            HStack(spacing: 10) {
-                // Train type indicator
-                trainTypeBadge
-                
-                // Main content
-                VStack(alignment: .leading, spacing: 3) {
-                    // Times row
-                    HStack(spacing: 6) {
-                        HStack(spacing: 3) {
-                            Text(sourceAbbrev)
-                                .font(.caption2.weight(.semibold))
-                                .foregroundColor(.secondary)
-                            Text(prediction.departure)
-                                .font(.system(.subheadline, design: .rounded).weight(.medium))
-                        }
-                        
-                        if let arrival = arrivalTime {
-                            Image(systemName: "arrow.right")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
+        HStack(spacing: 8) {
+            // Main clickable area
+            Button(action: {
+                if let url = URL(string: "https://railtime.pages.dev/trains/\(prediction.trainNumber)") {
+                    NSWorkspace.shared.open(url)
+                }
+            }) {
+                HStack(spacing: 10) {
+                    trainTypeBadge
+                    
+                    VStack(alignment: .leading, spacing: 3) {
+                        HStack(spacing: 6) {
                             HStack(spacing: 3) {
-                                Text(destAbbrev)
+                                Text(sourceAbbrev)
                                     .font(.caption2.weight(.semibold))
                                     .foregroundColor(.secondary)
-                                Text(arrival)
+                                Text(prediction.departure)
                                     .font(.system(.subheadline, design: .rounded).weight(.medium))
                             }
+                            
+                            if let arrival = arrivalTime {
+                                Image(systemName: "arrow.right")
+                                    .font(.caption2)
+                                    .foregroundColor(.secondary)
+                                HStack(spacing: 3) {
+                                    Text(destAbbrev)
+                                        .font(.caption2.weight(.semibold))
+                                        .foregroundColor(.secondary)
+                                    Text(arrival)
+                                        .font(.system(.subheadline, design: .rounded).weight(.medium))
+                                }
+                            }
+                        }
+                        
+                        HStack(spacing: 8) {
+                            Text("#\(prediction.trainNumber)")
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+                            
+                            Text("departing in \(prediction.eta)")
+                                .font(.caption2)
+                                .foregroundColor(.orange)
                         }
                     }
                     
-                    // Info row
-                    HStack(spacing: 8) {
-                        Text("#\(prediction.trainNumber)")
-                            .font(.caption2)
-                            .foregroundColor(.secondary)
-                        
-                        Text("departing in \(prediction.eta)")
-                            .font(.caption2)
-                            .foregroundColor(.orange)
-                    }
+                    Spacer()
+                    
+                    delayIndicator
                 }
-                
-                Spacer()
-                
-                // Delay indicator
-                delayIndicator
+                .contentShape(Rectangle())
             }
-            .padding(.vertical, 6)
-            .padding(.horizontal, 4)
-            .background(isHovered ? Color.primary.opacity(0.05) : Color.clear)
-            .cornerRadius(6)
-            .contentShape(Rectangle())
+            .buttonStyle(.plain)
+            
+            // Bell button
+            Button(action: { onBellTap?() }) {
+                Image(systemName: isSubscribed ? "bell.fill" : "bell")
+                    .font(.caption)
+                    .foregroundColor(isSubscribed ? .orange : .secondary)
+            }
+            .buttonStyle(.plain)
+            .help(isSubscribed ? "Cancel notification" : "Notify before departure")
         }
-        .buttonStyle(.plain)
+        .padding(.vertical, 6)
+        .padding(.horizontal, 4)
+        .background(isHovered ? Color.primary.opacity(0.05) : Color.clear)
+        .cornerRadius(6)
         .onHover { isHovered = $0 }
     }
     

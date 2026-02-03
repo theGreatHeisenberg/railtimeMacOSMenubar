@@ -20,6 +20,7 @@ class AppState: ObservableObject {
     @AppStorage("refreshInterval") private var refreshInterval: Int = 60
     @AppStorage("notificationsEnabled") private var notificationsEnabled: Bool = true
     @AppStorage("notificationMinutes") private var notificationMinutes: Int = 5
+    @AppStorage("defaultTrainCount") private var defaultTrainCount: Int = 3
     
     private var refreshTimer: Timer?
     private var countdownTimer: Timer?
@@ -126,7 +127,7 @@ class AppState: ObservableObject {
             let fetched = try await APIService.shared.fetchPredictions(
                 station: station,
                 direction: direction,
-                limit: 3
+                limit: 10
             )
             
             // Fetch destination predictions to get arrival times

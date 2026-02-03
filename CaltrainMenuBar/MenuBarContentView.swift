@@ -3,6 +3,13 @@ import SwiftUI
 struct MenuBarContentView: View {
     @StateObject private var appState = AppState.shared
     @StateObject private var routeManager = RouteManager.shared
+    @StateObject private var notificationManager = TrainNotificationManager.shared
+    @State private var showingAll = false
+    @AppStorage("defaultTrainCount") private var defaultTrainCount: Int = 3
+    
+    private var visiblePredictions: [PredictionWithArrival] {
+        showingAll ? appState.predictions : Array(appState.predictions.prefix(defaultTrainCount))
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -117,12 +124,36 @@ struct MenuBarContentView: View {
             .padding(.vertical, 20)
         } else {
             VStack(spacing: 0) {
-                ForEach(appState.predictions) { item in
-                    TrainRowView(prediction: item.prediction, arrivalTime: item.arrivalTime)
-                        .padding(.horizontal, 14)
-                    if item.id != appState.predictions.last?.id {
+                ForEach(visiblePredictions) { item in
+                    TrainRowView(
+                        prediction: item.prediction,
+                        arrivalTime: item.arrivalTime,
+                        isSubscribed: notificationManager.isSubscribed(
+                            trainNumber: item.prediction.trainNumber,
+                            departure: item.prediction.departure
+                        ),
+                        onBellTap: { notificationManager.toggle(prediction: item.prediction) }
+                    )
+                    .padding(.horizontal, 14)
+                    if item.id != visiblePredictions.last?.id {
                         Divider().padding(.horizontal, 14).padding(.vertical, 2)
                     }
+                }
+                
+                if appState.predictions.count > defaultTrainCount {
+                    Divider().padding(.horizontal, 14).padding(.vertical, 2)
+                    Button(action: { showingAll.toggle() }) {
+                        HStack {
+                            Text(showingAll ? "Show Less" : "Show More (\(appState.predictions.count - defaultTrainCount) more)")
+                                .font(.caption)
+                            Image(systemName: showingAll ? "chevron.up" : "chevron.down")
+                                .font(.caption2)
+                        }
+                        .foregroundColor(.secondary)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 6)
+                    }
+                    .buttonStyle(.plain)
                 }
             }
             .padding(.vertical, 8)
