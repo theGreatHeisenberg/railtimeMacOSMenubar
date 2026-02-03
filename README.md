@@ -10,8 +10,9 @@ A native macOS menu bar app for viewing real-time Caltrain schedules.
 
 1. Download the latest [CaltrainMenuBar.dmg](https://github.com/theGreatHeisenberg/railtimeMacOSMenubar/releases/latest/download/CaltrainMenuBar.dmg)
 2. Open the DMG and drag `CaltrainMenuBar.app` to your Applications folder
-3. Launch from Applications (first time: right-click → Open to bypass Gatekeeper)
-4. Look for the 🚂 icon in your menu bar
+3. Open Terminal and run: `xattr -cr /Applications/CaltrainMenuBar.app`
+4. Launch from Applications
+5. Look for the 🚂 icon in your menu bar
 
 ### Build from Source
 
