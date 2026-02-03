@@ -6,7 +6,26 @@ import UserNotifications
 class TrainNotificationManager: ObservableObject {
     static let shared = TrainNotificationManager()
     
-    @Published private(set) var subscribedTrains: Set<String> = []
+    @Published private(set) var subscribedTrains: Set<String> = [] {
+        didSet { saveSubscriptions() }
+    }
+    @AppStorage("notificationMinutes") private var notificationMinutes = 5
+    
+    private let subscriptionsKey = "subscribedTrains"
+    
+    init() {
+        loadSubscriptions()
+    }
+    
+    private func loadSubscriptions() {
+        if let data = UserDefaults.standard.stringArray(forKey: subscriptionsKey) {
+            subscribedTrains = Set(data)
+        }
+    }
+    
+    private func saveSubscriptions() {
+        UserDefaults.standard.set(Array(subscribedTrains), forKey: subscriptionsKey)
+    }
     
     private func trainKey(_ trainNumber: String, _ departure: String) -> String {
         "\(trainNumber)-\(departure)"
@@ -24,8 +43,6 @@ class TrainNotificationManager: ObservableObject {
             subscribe(prediction: prediction)
         }
     }
-    
-    @AppStorage("notificationMinutes") private var notificationMinutes = 5
     
     private func subscribe(prediction: TrainPrediction) {
         let key = trainKey(prediction.trainNumber, prediction.departure)
@@ -45,8 +62,10 @@ class TrainNotificationManager: ObservableObject {
         guard let todayDeparture = calendar.date(from: components),
               let notifyTime = calendar.date(byAdding: .minute, value: -notificationMinutes, to: todayDeparture) else { return }
         
-        let interval = notifyTime.timeIntervalSince(now)
-        guard interval > 0 else { return } // Already past notify time
+        let interval = max(notifyTime.timeIntervalSince(now), 1) // At least 1 second
+        
+        // Only schedule if train hasn't departed yet
+        guard todayDeparture.timeIntervalSince(now) > 0 else { return }
         
         let content = UNMutableNotificationContent()
         content.title = "🚂 Train #\(prediction.trainNumber) departing soon"
@@ -55,7 +74,11 @@ class TrainNotificationManager: ObservableObject {
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
         let request = UNNotificationRequest(identifier: key, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request)
+        UNUserNotificationCenter.current().add(request) { error in
+            if error == nil {
+                try? "Scheduled: \(key) in \(Int(interval))s\n".write(toFile: "/tmp/railtime_notif.log", atomically: false, encoding: .utf8)
+            }
+        }
     }
     
     private func unsubscribe(prediction: TrainPrediction) {

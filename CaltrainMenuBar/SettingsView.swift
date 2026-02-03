@@ -24,9 +24,9 @@ struct AboutView: View {
                         .frame(width: 80, height: 80)
                     Text("🚂").font(.system(size: 40))
                 }
-                Text("Caltrain Menu Bar")
+                Text("Railtime")
                     .font(.title2.bold())
-                Text("Version 1.0")
+                Text("Caltrain Edition • Version 1.1")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -40,7 +40,7 @@ struct AboutView: View {
             Link(destination: URL(string: "https://railtime.pages.dev")!) {
                 HStack {
                     Image(systemName: "globe")
-                    Text("Powered by railtime API")
+                    Text("railtime.pages.dev")
                 }
                 .font(.caption)
             }

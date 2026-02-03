@@ -33,11 +33,16 @@ struct MenuBarContentView: View {
     
     private var headerView: some View {
         HStack {
-            HStack(spacing: 6) {
-                Text("🚂")
-                    .font(.title2)
-                Text("Caltrain")
-                    .font(.headline)
+            VStack(alignment: .leading, spacing: 1) {
+                HStack(spacing: 6) {
+                    Text("🚂")
+                        .font(.title2)
+                    Text("Railtime")
+                        .font(.headline)
+                }
+                Text("Caltrain Schedules")
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
             }
             if appState.isStale {
                 Image(systemName: "exclamationmark.triangle.fill")
