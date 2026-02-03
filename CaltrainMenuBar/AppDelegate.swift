@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func openSettings() {
         if settingsWindow == nil {
             settingsWindow = NSWindow(
-                contentRect: NSRect(x: 0, y: 0, width: 450, height: 350),
+                contentRect: NSRect(x: 0, y: 0, width: 480, height: 380),
                 styleMask: [.titled, .closable],
                 backing: .buffered,
                 defer: false
@@ -34,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             settingsWindow?.contentView = NSHostingView(rootView: SettingsView())
             settingsWindow?.center()
             settingsWindow?.level = .floating
+            settingsWindow?.isReleasedWhenClosed = false
         }
         settingsWindow?.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
