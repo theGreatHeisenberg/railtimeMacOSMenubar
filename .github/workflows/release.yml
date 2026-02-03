@@ -22,6 +22,7 @@ jobs:
           cp .build/release/CaltrainMenuBar CaltrainMenuBar.app/Contents/MacOS/
           cp CaltrainMenuBar/Info.plist CaltrainMenuBar.app/Contents/
           cp CaltrainMenuBar/stations.json CaltrainMenuBar.app/Contents/Resources/
+          codesign --force --deep --sign - CaltrainMenuBar.app
           hdiutil create -volname "CaltrainMenuBar" -srcfolder CaltrainMenuBar.app -ov -format UDZO CaltrainMenuBar.dmg
       
       - name: Release
