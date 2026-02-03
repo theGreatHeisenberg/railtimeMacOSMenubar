@@ -7,7 +7,6 @@ class TrainNotificationManager: ObservableObject {
     static let shared = TrainNotificationManager()
     
     @Published private(set) var subscribedTrains: Set<String> = []
-    @AppStorage("notificationMinutes") private var notificationMinutes = 5
     
     private func trainKey(_ trainNumber: String, _ departure: String) -> String {
         "\(trainNumber)-\(departure)"
@@ -26,22 +25,14 @@ class TrainNotificationManager: ObservableObject {
         }
     }
     
+    @AppStorage("notificationMinutes") private var notificationMinutes = 5
+    
     private func subscribe(prediction: TrainPrediction) {
         let key = trainKey(prediction.trainNumber, prediction.departure)
         subscribedTrains.insert(key)
-        scheduleNotification(for: prediction)
-    }
-    
-    private func unsubscribe(prediction: TrainPrediction) {
-        let key = trainKey(prediction.trainNumber, prediction.departure)
-        subscribedTrains.remove(key)
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [key])
-    }
-    
-    private func scheduleNotification(for prediction: TrainPrediction) {
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm a"
-        
         guard let departureDate = formatter.date(from: prediction.departure) else { return }
         
         let calendar = Calendar.current
@@ -52,27 +43,24 @@ class TrainNotificationManager: ObservableObject {
         components.day = calendar.component(.day, from: now)
         
         guard let todayDeparture = calendar.date(from: components),
-              let notifyTime = calendar.date(byAdding: .minute, value: -notificationMinutes, to: todayDeparture),
-              notifyTime > now else { return }
+              let notifyTime = calendar.date(byAdding: .minute, value: -notificationMinutes, to: todayDeparture) else { return }
+        
+        let interval = notifyTime.timeIntervalSince(now)
+        guard interval > 0 else { return } // Already past notify time
         
         let content = UNMutableNotificationContent()
         content.title = "🚂 Train #\(prediction.trainNumber) departing soon"
         content.body = "\(prediction.trainType.rawValue) departs at \(prediction.departure) (\(notificationMinutes) min)"
         content.sound = .default
         
-        let trigger = UNTimeIntervalNotificationTrigger(
-            timeInterval: notifyTime.timeIntervalSince(now),
-            repeats: false
-        )
-        
-        let key = trainKey(prediction.trainNumber, prediction.departure)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
         let request = UNNotificationRequest(identifier: key, content: content, trigger: trigger)
-        
         UNUserNotificationCenter.current().add(request)
     }
     
-    func clearExpired() {
-        // Called periodically to clean up past trains
-        subscribedTrains.removeAll()
+    private func unsubscribe(prediction: TrainPrediction) {
+        let key = trainKey(prediction.trainNumber, prediction.departure)
+        subscribedTrains.remove(key)
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [key])
     }
 }

@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 
 @MainActor
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -11,6 +12,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         AppDelegate.shared = self
         _ = StationService.shared
+        
+        // Request notification permission on launch
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
         
         // Only use NSStatusItem on macOS 12; macOS 13+ uses MenuBarExtra
         if #unavailable(macOS 13.0) {

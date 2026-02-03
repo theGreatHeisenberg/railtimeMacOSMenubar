@@ -22,7 +22,7 @@ struct MenuBarContentView: View {
             Divider().padding(.horizontal, 12)
             footerView
         }
-        .frame(width: 300)
+        .frame(width: 340)
         .task {
             await appState.refresh()
         }
