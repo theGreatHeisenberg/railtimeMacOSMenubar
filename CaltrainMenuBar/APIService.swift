@@ -19,7 +19,13 @@ actor APIService {
         }
         
         let predictions = try JSONDecoder().decode([TrainPrediction].self, from: data)
-        return predictions.sorted { $0.departure < $1.departure }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        return predictions.sorted {
+            let date0 = formatter.date(from: $0.departure) ?? Date.distantFuture
+            let date1 = formatter.date(from: $1.departure) ?? Date.distantFuture
+            return date0 < date1
+        }
     }
     
     func fetchPredictions(station: Station, direction: Direction, limit: Int = 3) async throws -> [TrainPrediction] {
