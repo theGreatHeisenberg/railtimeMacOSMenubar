@@ -13,14 +13,21 @@ class TrainNotificationManager: ObservableObject {
     
     private let subscriptionsKey = "subscribedTrains"
     
+    private var todayString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: Date())
+    }
+    
     init() {
         loadSubscriptions()
     }
     
     private func loadSubscriptions() {
-        if let data = UserDefaults.standard.stringArray(forKey: subscriptionsKey) {
-            subscribedTrains = Set(data)
-        }
+        guard let data = UserDefaults.standard.stringArray(forKey: subscriptionsKey) else { return }
+        // Only keep today's subscriptions
+        let today = todayString
+        subscribedTrains = Set(data.filter { $0.hasSuffix("-\(today)") })
     }
     
     private func saveSubscriptions() {
@@ -28,7 +35,7 @@ class TrainNotificationManager: ObservableObject {
     }
     
     private func trainKey(_ trainNumber: String, _ departure: String) -> String {
-        "\(trainNumber)-\(departure)"
+        "\(trainNumber)-\(departure)-\(todayString)"
     }
     
     func isSubscribed(trainNumber: String, departure: String) -> Bool {
