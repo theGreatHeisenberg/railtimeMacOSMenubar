@@ -21,7 +21,9 @@ jobs:
           mkdir -p CaltrainMenuBar.app/Contents/Resources
           cp .build/release/CaltrainMenuBar CaltrainMenuBar.app/Contents/MacOS/
           cp CaltrainMenuBar/Info.plist CaltrainMenuBar.app/Contents/
-          cp -r .build/release/CaltrainMenuBar_CaltrainMenuBar.bundle CaltrainMenuBar.app/
+          if [ -d ".build/release/CaltrainMenuBar_CaltrainMenuBar.bundle" ]; then
+            cp -r .build/release/CaltrainMenuBar_CaltrainMenuBar.bundle CaltrainMenuBar.app/Contents/Resources/
+          fi
           codesign --force --deep --sign - CaltrainMenuBar.app
           hdiutil create -volname "CaltrainMenuBar" -srcfolder CaltrainMenuBar.app -ov -format UDZO CaltrainMenuBar.dmg
       
